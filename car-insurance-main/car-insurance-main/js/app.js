@@ -4,12 +4,11 @@ const carModel = document.querySelector(".car-model");
 const carPrice = document.querySelector(".car-price");
 const submitBtn = document.querySelector(".submit");
 const resultFactor = document.querySelector("#result");
+const inputCar = document.querySelector("#make");
+const year = document.querySelector("#year");
 
 // Events
-submitBtn.addEventListener("click", function () {
-  resultFactor.style.display = "block";
-});
-
+submitBtn.addEventListener("click", showFactor);
 // Functions
 // User Interface Functions
 // Show Years
@@ -71,8 +70,17 @@ function displayYears() {
     optionTag.innerText = `${i}`;
     inputYear.appendChild(optionTag);
     pridePrice *= 0.005;
-    console.log(pridePrice);
+    carPrice.innerText = pridePrice;
+    creatDate.innerText = optionTag.value;
   }
 }
 
 displayYears();
+
+function showFactor() {
+  if (inputCar.value == "" || year.value == "") {
+    return alert("Enter the information");
+  } else {
+    resultFactor.style.display = "block";
+  }
+}
