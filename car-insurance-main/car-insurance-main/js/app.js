@@ -2,13 +2,14 @@
 const creatDate = document.querySelector(".creat-date");
 const carModel = document.querySelector(".car-model");
 const carPrice = document.querySelector(".car-price");
-const submitBtn = document.querySelector(".submit");
 const resultFactor = document.querySelector("#result");
 const inputCar = document.querySelector("#make");
 const year = document.querySelector("#year");
+const requestquote = document.querySelector("#request-quote");
 
 // Events
-submitBtn.addEventListener("click", showFactor);
+requestquote.addEventListener("submit", showFactor);
+
 // Functions
 // User Interface Functions
 // Show Years
@@ -62,24 +63,27 @@ function displayYears() {
   console.log(minYear);
 
   const inputYear = document.querySelector("#year");
-  let bacePrice = 2000000;
-  let pridePrice = bacePrice * 1.15;
+  // let bacePrice = 2000000;
+  // let pridePrice = bacePrice * 1.15;
+  let optionTag = document.createElement("option");
+  optionTag.value = "";
+  optionTag.innerText = "-انتخاب-";
+  inputYear.appendChild(optionTag);
   for (let i = maxYear; i >= minYear; i--) {
     let optionTag = document.createElement("option");
     optionTag.value = i;
     optionTag.innerText = `${i}`;
     inputYear.appendChild(optionTag);
-    pridePrice *= 0.005;
-    carPrice.innerText = pridePrice;
-    creatDate.innerText = optionTag.value;
   }
 }
 
 displayYears();
 
-function showFactor() {
-  if (inputCar.value == "" || year.value == "") {
-    return alert("Enter the information");
+function showFactor(e) {
+  e.preventDefault();
+  const checkBox = document.querySelector("input[name='level']:checked");
+  if (inputCar.value === "" || year.value === "" || checkBox === "") {
+    alert("Enter the information");
   } else {
     resultFactor.style.display = "block";
   }
