@@ -1,3 +1,5 @@
+// const { from } = require("jalali-moment");
+
 // Variables
 const creatDate = document.querySelector(".creat-date");
 const carModel = document.querySelector(".car-model");
@@ -5,10 +7,10 @@ const carPrice = document.querySelector(".car-price");
 const resultFactor = document.querySelector("#result");
 const inputCar = document.querySelector("#make");
 const year = document.querySelector("#year");
-const requestquote = document.querySelector("#request-quote");
+const form = document.querySelector("#request-quote");
 
 // Events
-requestquote.addEventListener("submit", showFactor);
+form.addEventListener("submit", showFactor);
 
 // Functions
 // User Interface Functions
@@ -83,8 +85,27 @@ function showFactor(e) {
   e.preventDefault();
   const checkBox = document.querySelector("input[name='level']:checked");
   if (inputCar.value === "" || year.value === "" || checkBox === "") {
-    alert("Enter the information");
+    console.log("hello");
   } else {
     resultFactor.style.display = "block";
+    console.log(insuranceCase(carModel, year, level.value));
   }
 }
+
+// display message
+
+function displayMsg(msg) {
+  //
+  const messageBox = document.createElement("div");
+  messageBox.classList = "error";
+  // show message.
+  form.insertBefore(messageBox, document.querySelector(".form-group"));
+  messageBox.innerText = msg;
+
+  //remove message box.
+  setTimeout(() => {
+    document.querySelector(".error").remove();
+  }, 5000);
+}
+
+displayMsg("hello");
